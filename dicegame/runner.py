@@ -12,7 +12,6 @@ class GameRunner:
         self.wins = 0
         self.loses = 0
 
-    @property
     def answer(self):
         total = 0
         for die in self.dice:
@@ -35,13 +34,13 @@ class GameRunner:
             guess = input("Sigh. What is your guess?: ")
             guess = int(guess)
 
-            if guess == runner.answer:
+            if guess == runner.answer():
                 print("Congrats, you can add like a 5 year old...")
                 runner.wins += 1
                 c += 1
             else:
                 print("Sorry that's wrong")
-                print("The answer is: {}".format(runner.answer))
+                print("The answer is: {}".format(runner.answer()))
                 print("Like seriously, how could you mess that up")
                 runner.loses += 1
                 c = 0
