@@ -55,7 +55,7 @@ cd /path/to/pdb-tutorial
 ```
 
 `file: instructions.txt`
-```shell
+```
 Your boss has given you the following project to fix for a client. It's supposed to be a simple dice
 game where the object of the game is to correctly add up the values of the dice for 6 consecutive turns.
 
@@ -74,7 +74,7 @@ python main.py
 
 You should see something like this:
 
-```shell
+```
 Add the values of the dice
 It's really that easy
 What are you doing with your life.
@@ -110,7 +110,7 @@ Sigh. What is your guess?:
 
 Looks like the previous programmer had a sense of...humor? Nonetheless, let's enter 17 (since that is the total value of the dice).
 
-```shell
+```
 Sigh. What is your guess?: 17
 Sorry that's wrong
 The answer is: 5
@@ -122,7 +122,7 @@ Would you like to play again?[Y/n]:
 Weird. It said the answer is 5 but that's clearly wrong... Alright, maybe the dice addition is wrong but let's try the game again to figure it out.
 Looks like the prompt to play again is `'Y'` so let's enter that now.
 
-```shell
+```
 Would you like to play again?[Y/n]: Y
 Traceback (most recent call last):
   File "main.py", line 12, in <module>
@@ -176,7 +176,7 @@ Cool, now let's try to run `main.py` again and see what happens.
 ```shell
 python main.py
 ```
-```shell
+```
 Add the values of the dice
 It's really that easy
 What are you doing with your life.
@@ -241,7 +241,7 @@ current position.
 
 Let's try using `l` now. In your already open `pdb` prompt, type in `l` and look at the output:
 
-```shell
+```
 (Pdb) l
   4     def main():
   5         print("Add the values of the dice")
@@ -258,7 +258,7 @@ Let's try using `l` now. In your already open `pdb` prompt, type in `l` and look
 
 If we want to see the whole file, we can call the list function with the range 1 to 13 like so:
 
-```shell
+```
 (Pdb) l 1, 13
   1     from dicegame.runner import GameRunner
   2     
@@ -291,7 +291,7 @@ s(tep)
 Your current line of execution should still be on `:9` and you can tell the current line by looking at the `->` outputted by the `list` command. 
 Let's call the `step` command and see what happens.
 
-```shell
+```
 (Pdb) s
 --Call--
 > /Users/Development/pdb-tutorial/dicegame/runner.py(22)run()
@@ -302,7 +302,7 @@ Nice! We're currently in the `runner.py` file on line 22 which we can tell from 
 `> /Users/Development/pdb-tutorial/dicegame/runner.py(22)run()`.
 The problem is, we don't have much context so run the `list` command to checkout the method.
 
-```shell
+```
 (Pdb) l
  17             total = 0
  18             for die in self.dice:
@@ -320,7 +320,7 @@ The problem is, we don't have much context so run the `list` command to checkout
 Awesome! Now we have some more context on the `run()` method but we are currently on `:22`. Let's step in one more time so that we enter the method itself and
 then run the list command to see our current position.
 
-```shell
+```
 (Pdb) s
 > /Users/Development/pdb-tutorial/dicegame/runner.py(26)run()
 -> c = 0
@@ -351,7 +351,7 @@ n(ext)
 
 From the current line, type the `n(ext)` command followed by `list` (notice a pattern) and let's observe what happens.
 
-```shell
+```
 (Pdb) n
 > /Users/Development/pdb-tutorial/dicegame/runner.py(27)run()
 -> while True:
@@ -372,7 +372,7 @@ From the current line, type the `n(ext)` command followed by `list` (notice a pa
 Now our current line on the `while True` statement! We can keep calling `next` indefinitely until the program throws an exception or terminates. Call `next` 3 more
 times to get to the `for` loop and then follow up `next` with `list`.
 
-```shell
+```
 (Pdb) n
 > /Users/Development/pdb-tutorial/dicegame/runner.py(28)run()
 -> runner = cls()
@@ -400,7 +400,7 @@ Round 1
 At this current point, if you continue to type the `next` command you will then iterate through the `for` loop for the length of the `runner.dice`
 attribute. We can take a look at the length of the `runner.dice` by calling the `len()` function around it in the `pdb` REPL which should return 5.
 
-```shell
+```
 (Pdb) len(runner.dice)
 5
 ```
@@ -431,7 +431,7 @@ We're only going to pay attention to the first two paragraphs of `b(reak)`'s des
 to set a break point past the `for` loop so we can coninue to navigate through the `run()` method. Let's stop on `:35` since this has the input function
 which will break and wait for a user input anyways. To do this, we can type `b 35` and then `continue` to the break point.
 
-```shell
+```
 (Pdb) b 35
 Breakpoint 1 at /Users/Development/pdb-tutorial/dicegame/runner.py(32)run()
 (Pdb) c
@@ -456,7 +456,7 @@ output. Let's clear the breakpoint now by calling the `clear` command followed b
 
 **NB**: You can also clear all the breakpoints if you don't provide any arguments to the `clear` command.
 
-```shell
+```
 (Pdb) cl 1
 Deleted breakpoint 1 at /Users/Development/pdb-tutorial/dicegame/runner.py:35
 ```
@@ -464,7 +464,7 @@ Deleted breakpoint 1 at /Users/Development/pdb-tutorial/dicegame/runner.py:35
 From here we can call `next` and execute the `input()` function. Let's just type 10 for our guess and once we are back in the `pdb` REPL, call `list` so we can see
 the next few lines.
 
-```shell
+```
 (Pdb) n
 Sigh. What is your guess?: 10
 > /Users/Development/pdb-tutorial/dicegame/runner.py(36)run()
@@ -489,7 +489,7 @@ Remember that we are trying to find out why our guess wasn't correct on our firs
 equality condition. We should check to see what the `runner.answer()` method is doing in case there might be an error there. Call `next` and then let's call `step`
 to _step_ into the `runner.answer()` method.
 
-```shell
+```
 (Pdb) s
 --Call--
 > /Users/spiro/Development/mobify/engineering-meeting/pdb-tutorial/dicegame/runner.py(15)answer()
@@ -512,7 +512,7 @@ I think I found the issue! On line 18, it doesn't look like the `total` variable
 checking whether a `die` has an attribute which would contain its value. To get to line 18, you can either set a break point or just call `next` until you
 hit the first iteration. Once you're on `:18`, let's call the `dir()` function on the `die` instance and check what methods and attributes it has.
 
-```shell
+```
 -> total += 1
 (Pdb) dir(die)
 ['__class__', '__delattr__', [...], 'create_dice', 'roll', 'show', 'value']
@@ -521,7 +521,7 @@ hit the first iteration. Once you're on `:18`, let's call the `dir()` function o
 Looks like there is a `value` attribute after all! Let's call that and see what returns (remember, this value will probably be different than mine). And just for fun,
 let's make sure it is equal to the value that the die is showing by calling the `show()` method as well.
 
-```shell
+```
 (Pdb) die.value
 2
 (Pdb) die.show()
@@ -545,7 +545,7 @@ The `return` is a great _power user_ command that let's you examine the final ou
 `return` pdb command will help if there are multiple return statements in a single function since it only follows the path of execution for a single return. Let's
 call the `return` command and get to the end of the function.
 
-```shell
+```
 (Pdb) r
 --Return--
 > /Users/Development/pdb-tutorial/dicegame/runner.py(19)answer()->5
@@ -587,7 +587,7 @@ The bang command (`!`) lets `pdb` know that the following statement will be a Py
 with the `c` variable. Like I mentioned in the beginning of the tutorial, calling `c` in `pdb` will issue the `continue` command. Navigating in your `pdb` REPL, stop
 at `:26` in the `runner.py` file and from that point you can prefix `c` with the `!` command and see what happens. 
 
-```shell
+```
 (Pdb) !c
 0
 ```
@@ -612,7 +612,7 @@ However, we will cover the `pm()` method since I find it to be a bit more powerf
 Open up the python REPL by typing `python` in your shell in the root of this project. From there, let's import the `main` method from the `main` module and import `pdb`
 as well. Play the game until the we get the exception after trying to type `Y` to continue the game.
 
-```shell
+```
 >>> import pdb
 >>> from main import main
 >>> main()
@@ -632,7 +632,7 @@ dicegame.utils.UnnecessaryError: You actually called this function...
 
 Now, let's call the `pm()` method from the `pdb` module and see what happens.
 
-```shell
+```
 >>> pdb.pm()
 > /Users/Development/pdb-tutorial/dicegame/utils.py(13)i_just_throw_an_exception()
 -> raise UnnecessaryError("You actually called this function...")
