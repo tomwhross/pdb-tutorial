@@ -1,4 +1,4 @@
-## `pdb` Tutorial
+# `pdb` Tutorial
 
 The purpose of this tutorial is to teach you the basics of `pdb`, the **P**ython **D**e**B**ugger for [Python2](https://docs.python.org/2/library/pdb.html)
 and [Python3](https://docs.python.org/3/library/pdb.html).
@@ -13,7 +13,7 @@ python --version
 Now that you know your version, let's get to it!
 
 
-### What is the purpose of a debugger?
+## What is the purpose of a debugger?
 
 Before jumping into the code, we should have a brief discussion about the importance of debugging and using
 a debugging tool. For me, these three points highlight the importance of a debugger.
@@ -35,7 +35,7 @@ take some time before you feel comfortable navigating around in a debugging envi
 of this tutorial is to get your feet wet before you start using `pdb` in your own code base!
 
 
-### Playing the Game
+## Playing the Game
 
 So we already talked about the purpose of a debugger and now it's time to see it in action. First, you
 should clone this repo if you haven't already done so. If you don't have `git` installed, I recommend using
@@ -59,8 +59,8 @@ cd /path/to/pdb-tutorial
 Your boss has given you the following project to fix for a client. It's supposed to be a simple dice
 game where the object of the game is to correctly add up the values of the dice for 6 consecutive turns.
 
-The issue is that a former programmer worked on it and didn't know how to debug effectively. It's now up to
-you to fix the errors and finally make the game playable.
+The issue is that a former programmer worked on it and didn't know how to debug effectively.
+It's now up to you to fix the errors and finally make the game playable.
 
 To play the game you must run the main.py file.
 ```
@@ -108,7 +108,7 @@ Round 1
 Sigh. What is your guess?: 
 ```
 
-Looks like the previous programmer had a sense of...humor? Nonetheless, let's enter 17 (since that is the total value of the dice).
+Seems like the previous programmer had a sense of...humor? Nonetheless, let's enter 17 (since that is the total value of the dice).
 
 ```
 Sigh. What is your guess?: 17
@@ -119,8 +119,8 @@ Wins: 0 Loses 1
 Would you like to play again?[Y/n]: 
 ```
 
-Weird. It said the answer is 5 but that's clearly wrong... Alright, maybe the dice addition is wrong but let's try the game again to figure it out.
-Looks like the prompt to play again is `'Y'` so let's enter that now.
+Weird. It said the answer is 5 but that's clearly wrong... Alright, maybe the dice addition is wrong but let's play the game again to
+figure it out. Looks like the prompt to play again is `'Y'` so let's enter that now.
 
 ```
 Would you like to play again?[Y/n]: Y
@@ -136,11 +136,11 @@ Traceback (most recent call last):
 dicegame.utils.UnnecessaryError: You actually called this function...
 ```
 
-Ok weird, looks like an exception was thrown even though we used what was supposed to be a valid input. I think it's safe to
+Ok weird, there was an exception that was thrown even though we used what was supposed to be a valid input. I think it's safe to
 say that the program is broken so let's start the debugging process! 
 
 
-### PDB 101: Intro to `pdb`
+## PDB 101: Intro to `pdb`
 
 It's time to finally work with python's very own debugger `pdb`. The debugger is included in python's standard library and we
 use it the same way we would with any python library. First, we have to import the `pdb` module and then call one of its methods
@@ -193,7 +193,7 @@ a couple gotchas that we will get to in the advanced section. Regardless, let's 
 addition issue.
 
 
-### The 5 `pdb` commands that will leave you "speechless"
+## The 5 `pdb` commands that will leave you "speechless"
 
 Taken directly from the `pdb` documentation, these are the five commands that, once you learn them, you won't know how you lived
 without them.
@@ -220,7 +220,7 @@ shortened variable names.
 For the rest of the tutorial, I will be using the shortned version of the commands and if I use a command that I have not introduced
 here, I will explain what it does. So, let's begin with the first one.
 
-#### 1. l(ist) a.k.a. I'm too lazy to open the file containing the source code
+### 1. l(ist) a.k.a. I'm too lazy to open the file containing the source code
 
 ```
 l(ist) [first [,last]]
@@ -279,7 +279,7 @@ Unfortunately, we don't get that much information from this file alone but we do
 class. At this point, you might be thinking, "Awesome, I'll just set a `pdb` in the run method in the `dicegame/runner.py` file !" That will
 work, but there's an even easier way using the `step` command we will discuss next.
 
-#### 2. `s(tep)` a.k.a let's see what this method does...
+### 2. `s(tep)` a.k.a let's see what this method does...
 
 ```
 s(tep)
@@ -341,7 +341,7 @@ then run the list command to see our current position.
 As we can see, we are on a terribly named `c` variable that will cause us a major issue if we try to call it (remember the comment from earlier regarding the
 `c(ontinue)` command). We are just before the `while` loop so let's enter the loop and see what else we can uncover.
 
-#### 3. `n(ext)` a.k.a I hope this current line doesn't throw an exception
+### 3. `n(ext)` a.k.a I hope this current line doesn't throw an exception
 
 ```
 n(ext)
@@ -409,7 +409,7 @@ Since the length is _only_ 5 items, we could iterate through the loop by calling
 A better option would be to set a break point and then `continue` to that break point instead.
 
 
-#### 4. `b(reak)` a.k.a I don't want to type `n` anymore
+### 4. `b(reak)` a.k.a I don't want to type `n` anymore
 
 ```
 b(reak) [ ([filename:]lineno | function) [, condition] ]
@@ -518,7 +518,7 @@ hit the first iteration. Once you're on `:18`, let's call the `dir()` function o
 ['__class__', '__delattr__', [...], 'create_dice', 'roll', 'show', 'value']
 ``` 
 
-Looks like there is a `value` attribute after all! Let's call that and see what returns (remember, this value will probably be different than mine). And just for fun,
+There is a `value` attribute after all! Let's call that and see what returns (remember, this value will probably be different than mine). And just for fun,
 let's make sure it is equal to the value that the die is showing by calling the `show()` method as well.
 
 ```
@@ -534,7 +534,7 @@ It looks like it works as expected and we're ready to fix the answer method. How
 errors in one go. Unfortunately, we are once again stuck in this for loop. You might think to set a break point at `:19` and then call `continue` but there is actually
 a better way in this case.
 
-#### 5. `r(eturn)` a.k.a. I want to get out of this function
+### 5. `r(eturn)` a.k.a. I want to get out of this function
 
 ```
 r(eturn)
@@ -572,11 +572,11 @@ At this point, you can exit the `pdb` debugger by calling `exit()` **OR** `CTRL+
 out a couple other bugs and then follow along with a bit more advanced `pdb` examples.
 
 
-### Advanced `pdb` topics
+## Advanced `pdb` topics
 
 Here are a couple advanced `pdb` commands that you can also use.
 
-#### The `!` Bang! command
+### The `!` (bang) command
 
 ```
 !
@@ -595,7 +595,7 @@ at `:26` in the `runner.py` file and from that point you can prefix `c` with the
 We get the intended result, since `:25` assigned `c = 0`!
 
 
-#### `pdb` Post Mortem
+### `pdb` Post Mortem
 
 ```
 pdb.post_mortem(traceback=None)
@@ -646,6 +646,6 @@ before it crashed which will help you in your investigation.
 mode at the uncaught exception.
 
 
-### The End
+## The End
 
 Congrats on making it to the end and thank you for following along in this tutorial! If you have any comments, critiques, or additional advanced examples, I'm open to pull requests.
