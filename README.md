@@ -188,7 +188,7 @@ What are you doing with your life.
 There we go! We are now in the middle of the running program and we can start poking around. I think the first issue we should
 solve is the proper summation of the dice values.
 
-If you are familiar with Python's intepreter, a lot of that knowledge can be transfered to the `pdb` debugger. However, there will be
+If you are familiar with Python's interpreter, a lot of that knowledge can be transferred to the `pdb` debugger. However, there will be
 a couple gotchas that we will get to in the advanced section. Regardless, let's learn a couple commands that will help us solve the
 addition issue.
 
@@ -206,7 +206,7 @@ without them.
 
 Notice that there are brackets around the last part of every keyword. The brackets indicate that the rest of the word is _optional_ when
 using the command prompt for `pdb`. This saves typing but a major gotcha is if you have a variable name such as `l` or `n`, then the
-`pdb` command takes precendence. That is, say you have a variable named `c` in your program and you want to know the value of `c`. Well,
+`pdb` command takes precedence. That is, say you have a variable named `c` in your program and you want to know the value of `c`. Well,
 if you type `c` in `pdb`, you will actually be issuing the `c(ontinue)` keyword which executes the program and only stops if it encounters
 a break point!
 
@@ -217,7 +217,7 @@ shortened variable names.
 **NNB**: Another helpful tool is the following:
 `h(elp) - Without argument, print the list of available commands. With a command as an argument, print help about that command.`
 
-For the rest of the tutorial, I will be using the shortned version of the commands and if I use a command that I have not introduced
+For the rest of the tutorial, I will be using the shortened version of the commands and if I use a command that I have not introduced
 here, I will explain what it does. So, let's begin with the first one.
 
 ### 1. l(ist) a.k.a. I'm too lazy to open the file containing the source code
@@ -233,7 +233,7 @@ l(ist) [first [,last]]
 
 Using `list`, we can examine the source code of the current file we are in. The arguments for `list` lets you specify a given range
 of lines you wish to see which can be helpful if you are in some weird 3rd party package and you are trying to figure out why they
-can't get string enconding working _true story_.
+can't get string encoding working _true story_.
 
 **NB**: In Python 3.2 and above, you can type `ll` (long list) which shows you source code for the current function or frame. I use
 this all the time instead of `l` since it's much better knowing which function you are in than an arbitrary 11 lines around your
@@ -428,7 +428,7 @@ b(reak) [ ([filename:]lineno | function) [, condition] ]
 ```
 
 We're only going to pay attention to the first two paragraphs of `b(reak)`'s description in this tutorial. Like I mentioned in the previous section, we want
-to set a break point past the `for` loop so we can coninue to navigate through the `run()` method. Let's stop on `:35` since this has the input function
+to set a break point past the `for` loop so we can continue to navigate through the `run()` method. Let's stop on `:35` since this has the input function
 which will break and wait for a user input anyways. To do this, we can type `b 35` and then `continue` to the break point.
 
 ```
