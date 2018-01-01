@@ -299,22 +299,22 @@ Let's call the `step` command and see what happens.
 ```
 
 Nice! We're currently in the `runner.py` file on line 22 which we can tell from this line:
-`> /Users/Development/pdb-tutorial/dicegame/runner.py(22)run()`.
+`> /Users/Development/pdb-tutorial/dicegame/runner.py(21)run()`.
 The problem is, we don't have much context so run the `list` command to checkout the method.
 
 ```
 (Pdb) l
- 17             total = 0
- 18             for die in self.dice:
- 19                 total += 1
- 20             return total
- 21     
- 22  ->     @classmethod
- 23         def run(cls):
- 24             # Probably counts wins or something.
- 25             # Great variable name, 10/10.
- 26             c = 0
- 27             while True:
+ 16             total = 0
+ 17             for die in self.dice:
+ 18                 total += 1
+ 19             return total
+ 20     
+ 21  ->     @classmethod
+ 22         def run(cls):
+ 23             # Probably counts wins or something.
+ 24             # Great variable name, 10/10.
+ 25             c = 0
+ 26             while True:
 ```
 
 Awesome! Now we have some more context on the `run()` method but we are currently on `:22`. Let's step in one more time so that we enter the method itself and
@@ -322,20 +322,20 @@ then run the list command to see our current position.
 
 ```
 (Pdb) s
-> /Users/Development/pdb-tutorial/dicegame/runner.py(26)run()
+> /Users/Development/pdb-tutorial/dicegame/runner.py(25)run()
 -> c = 0
 (Pdb) l
- 21     
- 22         @classmethod
- 23         def run(cls):
- 24             # Probably counts wins or something.
- 25             # Great variable name, 10/10.
- 26  ->         c = 0
- 27             while True:
- 28                 runner = cls()
- 29     
- 30                 print("Round {}\n".format(runner.round))
- 31  
+ 20     
+ 21         @classmethod
+ 22         def run(cls):
+ 23             # Probably counts wins or something.
+ 24             # Great variable name, 10/10.
+ 25  ->         c = 0
+ 26             while True:
+ 27                 runner = cls()
+ 28     
+ 29                 print("Round {}\n".format(runner.round))
+ 30  
 ```
 
 As we can see, we are on a terribly named `c` variable that will cause us a major issue if we try to call it (remember the comment from earlier regarding the
@@ -356,17 +356,17 @@ From the current line, type the `n(ext)` command followed by `list` (notice a pa
 > /Users/Development/pdb-tutorial/dicegame/runner.py(27)run()
 -> while True:
 (Pdb) l
- 22         @classmethod
- 23         def run(cls):
- 24             # Probably counts wins or something.
- 25             # Great variable name, 10/10.
- 26             c = 0
- 27  ->         while True:
- 28                 runner = cls()
- 29     
- 30                 print("Round {}\n".format(runner.round))
- 31     
- 32                 for die in runner.dice:
+ 21         @classmethod
+ 22         def run(cls):
+ 23             # Probably counts wins or something.
+ 24             # Great variable name, 10/10.
+ 25             c = 0
+ 26  ->         while True:
+ 27                 runner = cls()
+ 28     
+ 29                 print("Round {}\n".format(runner.round))
+ 30     
+ 31                 for die in runner.dice:
 ```
 
 Now our current line on the `while True` statement! We can keep calling `next` indefinitely until the program throws an exception or terminates. Call `next` 3 more
@@ -374,27 +374,27 @@ times to get to the `for` loop and then follow up `next` with `list`.
 
 ```
 (Pdb) n
-> /Users/Development/pdb-tutorial/dicegame/runner.py(28)run()
+> /Users/Development/pdb-tutorial/dicegame/runner.py(27)run()
 -> runner = cls()
 (Pdb) n
-> /Users/Development/pdb-tutorial/dicegame/runner.py(30)run()
+> /Users/Development/pdb-tutorial/dicegame/runner.py(29)run()
 -> print("Round {}\n".format(runner.round))
 (Pdb) n
 Round 1
 
-> /Users/Development/pdb-tutorial/dicegame/runner.py(32)run()
+> /Users/Development/pdb-tutorial/dicegame/runner.py(31)run()
 -> for die in runner.dice:
 (Pdb) l
- 27             while True:
- 28                 runner = cls()
- 29     
- 30                 print("Round {}\n".format(runner.round))
- 31     
- 32  ->             for die in runner.dice:
- 33                     print(die.show())
- 34     
- 35                 guess = input("Sigh. What is your guess?: ")
- 36                 guess = int(guess)
+ 26             while True:
+ 27                 runner = cls()
+ 28     
+ 29                 print("Round {}\n".format(runner.round))
+ 30     
+ 31  ->             for die in runner.dice:
+ 32                     print(die.show())
+ 33     
+ 34                 guess = input("Sigh. What is your guess?: ")
+ 35                 guess = int(guess)
 ```
 
 At this current point, if you continue to type the `next` command you will then iterate through the `for` loop for the length of the `runner.dice`
@@ -428,17 +428,17 @@ b(reak) [ ([filename:]lineno | function) [, condition] ]
 ```
 
 We're only going to pay attention to the first two paragraphs of `b(reak)`'s description in this tutorial. Like I mentioned in the previous section, we want
-to set a break point past the `for` loop so we can continue to navigate through the `run()` method. Let's stop on `:35` since this has the input function
-which will break and wait for a user input anyways. To do this, we can type `b 35` and then `continue` to the break point.
+to set a break point past the `for` loop so we can continue to navigate through the `run()` method. Let's stop on `:34` since this has the input function
+which will break and wait for a user input anyways. To do this, we can type `b 34` and then `continue` to the break point.
 
 ```
-(Pdb) b 35
-Breakpoint 1 at /Users/Development/pdb-tutorial/dicegame/runner.py(32)run()
+(Pdb) b 34
+Breakpoint 1 at /Users/Development/pdb-tutorial/dicegame/runner.py(34)run()
 (Pdb) c
 
 [...] # prints some dice
 
-> /Users/Development/pdb-tutorial/dicegame/runner.py(35)run()
+> /Users/Development/pdb-tutorial/dicegame/runner.py(34)run()
 -> guess = input("Sigh. What is your guess?: ")
 ```
 
@@ -447,7 +447,7 @@ We can also take a look at the break points that we have set by calling `break` 
 ```
 (Pdb) b
 Num Type         Disp Enb   Where
-1   breakpoint   keep yes   at /Users/Development/pdb-tutorial/dicegame/runner.py:35
+1   breakpoint   keep yes   at /Users/Development/pdb-tutorial/dicegame/runner.py:34
     breakpoint already hit 1 time
 ```
 
@@ -458,7 +458,7 @@ output. Let's clear the breakpoint now by calling the `clear` command followed b
 
 ```
 (Pdb) cl 1
-Deleted breakpoint 1 at /Users/Development/pdb-tutorial/dicegame/runner.py:35
+Deleted breakpoint 1 at /Users/Development/pdb-tutorial/dicegame/runner.py:34
 ```
 
 From here we can call `next` and execute the `input()` function. Let's just type 10 for our guess and once we are back in the `pdb` REPL, call `list` so we can see
@@ -467,20 +467,20 @@ the next few lines.
 ```
 (Pdb) n
 Sigh. What is your guess?: 10
-> /Users/Development/pdb-tutorial/dicegame/runner.py(36)run()
+> /Users/Development/pdb-tutorial/dicegame/runner.py(35)run()
 -> guess = int(guess)
 (Pdb) l
- 31     
- 32                 for die in runner.dice:
- 33                     print(die.show())
- 34     
- 35                 guess = input("Sigh. What is your guess?: ")
- 36  ->             guess = int(guess)
- 37     
- 38                 if guess == runner.answer():
- 39                     print("Congrats, you can add like a 5 year old...")
- 40                     runner.wins += 1
- 41                     c += 1
+ 30     
+ 31                 for die in runner.dice:
+ 32                     print(die.show())
+ 33     
+ 34                 guess = input("Sigh. What is your guess?: ")
+ 35  ->             guess = int(guess)
+ 36     
+ 37                 if guess == runner.answer():
+ 38                     print("Congrats, you can add like a 5 year old...")
+ 39                     runner.wins += 1
+ 40                     c += 1
 
 
 ``` 
