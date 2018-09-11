@@ -294,11 +294,11 @@ Let's call the `step` command and see what happens.
 ```
 (Pdb) s
 --Call--
-> /Users/Development/pdb-tutorial/dicegame/runner.py(22)run()
+> /Users/Development/pdb-tutorial/dicegame/runner.py(21)run()
 -> @classmethod
 ```
 
-Nice! We're currently in the `runner.py` file on line 22 which we can tell from this line:
+Nice! We're currently in the `runner.py` file on line 21 which we can tell from this line:
 `> /Users/Development/pdb-tutorial/dicegame/runner.py(21)run()`.
 The problem is, we don't have much context so run the `list` command to checkout the method.
 
@@ -317,7 +317,7 @@ The problem is, we don't have much context so run the `list` command to checkout
  26             while True:
 ```
 
-Awesome! Now we have some more context on the `run()` method but we are currently on `:22`. Let's step in one more time so that we enter the method itself and
+Awesome! Now we have some more context on the `run()` method but we are currently on `:21`. Let's `step` in one more time so that we enter the method itself and
 then run the list command to see our current position.
 
 ```
