@@ -2,8 +2,21 @@
 
 The purpose of this tutorial is to teach you the basics of `pdb`, the **P**ython **D**e**B**ugger for [Python2](https://docs.python.org/2/library/pdb.html)
 and [Python3](https://docs.python.org/3/library/pdb.html).
-It will also include some helpful tricks to make your debugging sessions a lot less stressful. The tutorial works
-best if you use Python 2.7 or Python 3.4 and I will highlight the differences between the two versions if a `pdb`
+It will also include some helpful tricks to make your debugging sessions a lot less stressful.
+
+#### Languages
+
+The tutorial is written in english, but there are other translations available with help
+from the Python community:
+
+- [Korean](https://github.com/mingrammer/pdb-tutorial)
+
+If you would like to see other translations, or are interested in helping out with translating the tutorial,
+feel free to add to the [ongoing issues thread](https://github.com/spiside/pdb-tutorial/issues/9).
+
+
+The tutorial works best if you use Python 2.7 or Python 3.4 and I will highlight the
+differences between the two versions if a `pdb`
 command differs. To check what version of python you're using, type the following in your terminal:
 
 ```shell
