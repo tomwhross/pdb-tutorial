@@ -4,15 +4,19 @@ The purpose of this tutorial is to teach you the basics of `pdb`, the **P**ython
 and [Python3](https://docs.python.org/3/library/pdb.html).
 It will also include some helpful tricks to make your debugging sessions a lot less stressful.
 
-#### Languages
+--- 
+
+#### Other translations
 
 The tutorial is written in english, but there are other translations available with help
 from the Python community:
 
 - [Korean](https://github.com/mingrammer/pdb-tutorial)
 
-If you would like to see other translations, or are interested in helping out with translating the tutorial,
+If you would like to see another other translation, or are interested in helping out with translating the tutorial,
 feel free to add to the [ongoing issues thread](https://github.com/spiside/pdb-tutorial/issues/9).
+
+---
 
 
 The tutorial works best if you use Python 2.7 or Python 3.4 and I will highlight the
@@ -662,3 +666,4 @@ mode at the uncaught exception.
 ## The End
 
 Congrats on making it to the end and thank you for following along in this tutorial! If you have any comments, critiques, or additional advanced examples, I'm open to pull requests.
+
